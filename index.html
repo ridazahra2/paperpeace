@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Paper Peace – Where Serenity Meets Stationery</title>
+<title>PaperPeace – Where Stationery Meets Serenity</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -334,7 +334,7 @@
   .product-card {
     background: white; border-radius: 20px;
     border: 1px solid rgba(165,148,192,0.15);
-    overflow: hidden; cursor: pointer;
+    overflow: hidden;
     transition: all 0.3s; position: relative;
     box-shadow: 0 2px 16px rgba(124,107,158,0.06);
     user-select: none;
@@ -797,9 +797,9 @@
 <nav>
   <a href="#" class="nav-logo">
     <div class="nav-logo-img">
-      <img src="1773514047467_image.png" alt="Paper Peace" onerror="this.style.display='none'; this.parentNode.innerHTML='🕊️'">
+      <img src="logo.jpg" alt="PaperPeace" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#c9b8e0,#7c6b9e)'">
     </div>
-    <span class="nav-logo-text">Paper Peace</span>
+    <span class="nav-logo-text">PaperPeace</span>
   </a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
@@ -821,9 +821,9 @@
   <div class="hero-content">
     <div class="hero-badge">✦ Delivering across 🇵🇰 Pakistan</div>
     <div class="hero-logo-big">
-      <img src="1773514047467_image.png" alt="Paper Peace Logo" onerror="this.style.display='none'; this.parentNode.innerHTML='<span style=font-size:56px>🕊️</span>'">
+      <img src="logo.jpg" alt="PaperPeace Logo" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,rgba(255,255,255,0.9),rgba(232,223,245,0.6))'">
     </div>
-    <h1>Where <em>Serenity</em><br>Meets Stationery</h1>
+    <h1>Where <em>Stationery</em><br>Meets Serenity</h1>
     <p class="hero-tagline">Three friends from NUST, crafting calm one page at a time.<br>Creative stationery for a more peaceful mind.</p>
     <p class="hero-sub">✦ Handpicked · Mindful · Made with love</p>
     <div class="hero-ctas">
@@ -883,7 +883,6 @@
   <div class="section-header">
     <span class="section-label">Our Collection</span>
     <h2 class="section-title">Shop <em>Serenity</em></h2>
-    <p style="font-size:13px;color:var(--text-light);margin-top:10px;">Tap any product to add it to your cart</p>
   </div>
   <div class="filter-tabs" id="filterTabs">
     <button class="filter-tab active" data-filter="all">All</button>
@@ -1127,8 +1126,7 @@ function renderProducts(filter) {
   const filtered = filter === 'all' ? products : products.filter(p => p.cat === filter);
   grid.innerHTML = filtered.map((p, i) => `
     <div class="product-card" data-id="${p.id}"
-         style="animation: fadeUp 0.35s ease ${i * 0.04}s both"
-         onclick="tapProduct('${p.id}')">
+         style="animation: fadeUp 0.35s ease ${i * 0.04}s both">
       <div class="product-img">
         <img src="${p.image}" alt="${p.name}"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -1141,7 +1139,6 @@ function renderProducts(filter) {
         <div class="product-name">${p.name}</div>
         <div class="product-desc">${p.desc}</div>
         <div class="product-price">PKR ${p.price} <span>/ piece</span></div>
-        <div class="product-tap-hint">Tap to add to cart</div>
       </div>
     </div>
   `).join('');
@@ -1275,7 +1272,7 @@ function submitOrder() {
   }
 
   const msg = encodeURIComponent(
-`Hi Paper Peace! 🕊️
+`Hi PaperPeace! 🕊️
 
 Name: ${name}
 Phone: ${phone}
