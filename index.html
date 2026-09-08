@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PaperPeace — Where Stationery Meets Serenity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5F1FB;
+    --paper-dim:#EBE2F7;
+    --ink:#312244;
+    --sage:#9B87C4;
+    --sage-deep:#6E5A9E;
+    --dust:#A79BC9;
+    --clay:#C98FB0;
+    --line:#DDD1EF;
+    --white:#FFFDFF;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    color:var(--ink);
+    line-height:1.15;
+  }
+
+  a{color:inherit; text-decoration:none;}
+
+  img{max-width:100%; display:block;}
+
+  .wrap{
+    max-width:1140px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(245,241,251,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 32px;
+    max-width:1140px; margin:0 auto;
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-size:1.5rem;
+    letter-spacing:0.01em;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .logo-mark{
+    width:32px; height:32px;
+    flex-shrink:0;
+    object-fit:cover;
+    border-radius:9px;
+  }
+  .nav-links{
+    display:flex; gap:36px;
+    font-size:0.92rem;
+  }
+  .nav-links a{
+    position:relative;
+    padding-bottom:4px;
+    transition:color .2s;
+  }
+  .nav-links a:hover{color:var(--sage-deep);}
+  .nav-toggle{display:none; background:none; border:none; font-size:1.6rem; cursor:pointer; color:var(--ink);}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:110px 32px 90px;
+    max-width:1140px; margin:0 auto;
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:60px;
+    align-items:center;
+  }
+  .hero-eyebrow{
+    color:var(--sage-deep);
+    font-size:0.95rem;
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 5vw, 4.1rem);
+    max-width:11ch;
+  }
+  .hero p{
+    margin-top:22px;
+    max-width:42ch;
+    font-size:1.08rem;
+    color:#4A3F5C;
+  }
+  .hero-actions{
+    margin-top:34px;
+    display:flex; gap:16px;
+  }
+  .btn{
+    display:inline-block;
+    padding:13px 28px;
+    border-radius:2px;
+    font-size:0.95rem;
+    cursor:pointer;
+    border:1px solid var(--ink);
+    transition:all .2s ease;
+  }
+  .btn-primary{
+    background:var(--ink); color:var(--white);
+  }
+  .btn-primary:hover{background:var(--sage-deep); border-color:var(--sage-deep);}
+  .btn-ghost{
+    background:transparent; color:var(--ink);
+  }
+  .btn-ghost:hover{background:var(--paper-dim);}
+
+  .hero-visual{
+    position:relative;
+    aspect-ratio:4/5;
+    background:var(--paper-dim);
+    border:1px solid var(--line);
+    overflow:hidden;
+  }
+  .hero-visual img{
+    width:100%; height:100%; object-fit:cover;
+  }
+
+  /* ---------- Strip ---------- */
+  .strip{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    background:var(--white);
+  }
+  .strip-row{
+    max-width:1140px; margin:0 auto; padding:26px 32px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px;
+    font-size:0.88rem; color:#5E5270;
+  }
+
+  /* ---------- Section headings ---------- */
+  section{padding:90px 0;}
+  .section-head{
+    max-width:1140px; margin:0 auto 46px; padding:0 32px;
+    display:flex; justify-content:space-between; align-items:flex-end; gap:20px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:24px;
+  }
+  .section-head h2{font-size:2rem;}
+  .section-head p{color:#5E5270; max-width:34ch; font-size:0.95rem;}
+
+  /* ---------- About ---------- */
+  .about{background:var(--paper-dim);}
+  .about-grid{
+    max-width:1140px; margin:0 auto; padding:0 32px;
+    display:grid; grid-template-columns:0.85fr 1.15fr; gap:60px; align-items:center;
+  }
+  .about-img{
+    aspect-ratio:1/1; background:var(--white); border:1px solid var(--line); overflow:hidden;
+  }
+  .about-img img{width:100%; height:100%; object-fit:cover;}
+  .about-text h2{font-size:2.1rem; margin-bottom:20px;}
+  .about-text p{color:#4A3F5C; margin-bottom:16px; max-width:52ch;}
+  .founders{
+    margin-top:28px; display:flex; gap:30px; flex-wrap:wrap;
+  }
+  .founder{font-size:0.88rem; color:var(--sage-deep); border-top:1px solid var(--sage); padding-top:8px; min-width:120px;}
+
+  /* ---------- Category nav ---------- */
+  .cat-nav{
+    max-width:1140px; margin:0 auto 50px; padding:0 32px;
+    display:flex; gap:10px; flex-wrap:wrap;
+  }
+  .cat-pill{
+    padding:8px 18px; border:1px solid var(--line); border-radius:20px;
+    font-size:0.85rem; color:#5E5270; background:var(--white);
+  }
+  .cat-pill:hover{border-color:var(--sage-deep); color:var(--sage-deep);}
+
+  /* ---------- Products ---------- */
+  .category-block{
+    max-width:1140px; margin:0 auto 70px; padding:0 32px;
+  }
+  .category-title{
+    font-size:1.3rem; margin-bottom:24px;
+    display:flex; align-items:baseline; gap:14px;
+  }
+  .category-title span{
+    font-family:'Work Sans', sans-serif; font-size:0.82rem; color:#8A7FA0; font-weight:400;
+  }
+  .product-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(230px, 1fr));
+    gap:28px;
+  }
+  .card{
+    background:var(--white);
+    border:1px solid var(--line);
+    display:flex; flex-direction:column;
+    transition:border-color .2s, transform .2s;
+  }
+  .card:hover{border-color:var(--sage); transform:translateY(-3px);}
+  .card-img{
+    aspect-ratio:1/1;
+    background:var(--paper-dim);
+    overflow:hidden;
+    position:relative;
+  }
+  .card-img img{width:100%; height:100%; object-fit:cover;}
+  .badge{
+    position:absolute; top:10px; left:10px;
+    background:var(--white); border:1px solid var(--line);
+    font-size:0.7rem; padding:4px 9px; color:var(--sage-deep);
+  }
+  .badge.low{color:#A34A78; border-color:#E3B8D0;}
+  .card-body{padding:16px 16px 18px; display:flex; flex-direction:column; gap:6px; flex:1;}
+  .card-body h3{font-size:1rem; font-weight:500; font-family:'Work Sans', sans-serif;}
+  .card-meta{
+    display:flex; justify-content:space-between; align-items:center; margin-top:auto; padding-top:10px;
+  }
+  .price{font-family:'Fraunces', serif; font-size:1.05rem; color:var(--ink);}
+  .stock{font-size:0.78rem; color:#8A7FA0;}
+  .add-btn{
+    margin-top:12px; width:100%;
+    padding:10px; border:1px solid var(--ink); background:transparent;
+    font-size:0.85rem; cursor:pointer; color:var(--ink);
+    transition:all .2s;
+  }
+  .add-btn:hover{background:var(--ink); color:var(--white);}
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:var(--ink); color:var(--paper);
+    padding:70px 0 30px;
+  }
+  .footer-grid{
+    max-width:1140px; margin:0 auto; padding:0 32px;
+    display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:50px;
+  }
+  footer h3{color:var(--white); font-size:1.4rem; margin-bottom:14px;}
+  footer p{color:#C4B8D9; font-size:0.92rem; max-width:34ch;}
+  footer h4{
+    font-family:'Work Sans', sans-serif; font-size:0.85rem; color:#A99BC0;
+    margin-bottom:16px; font-weight:500;
+  }
+  footer ul{list-style:none;}
+  footer li{margin-bottom:10px; font-size:0.9rem;}
+  footer a:hover{color:var(--sage);}
+  .footer-bottom{
+    max-width:1140px; margin:50px auto 0; padding:24px 32px 0;
+    border-top:1px solid rgba(255,255,255,0.12);
+    font-size:0.8rem; color:#8D7FA3;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:860px){
+    .hero{grid-template-columns:1fr; padding-top:70px;}
+    .hero-visual{order:-1; aspect-ratio:16/10;}
+    .about-grid{grid-template-columns:1fr;}
+    .nav-links{
+      position:fixed; top:73px; left:0; right:0; bottom:0;
+      background:var(--paper); flex-direction:column; padding:30px 32px; gap:24px;
+      font-size:1.1rem; transform:translateX(100%); transition:transform .25s ease;
+    }
+    .nav-links.open{transform:translateX(0);}
+    .nav-toggle{display:block;}
+    .footer-grid{grid-template-columns:1fr; gap:34px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="#top">
+      <img class="logo-mark" src="pics/logo.jpg" alt="PaperPeace logo">
+      PaperPeace
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#shop">Shop</a>
+      <a href="#about">Our Story</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <p class="hero-eyebrow">Creative stationery for a more peaceful mind</p>
+      <h1>Where stationery meets serenity</h1>
+      <p>Notebooks that hold your thoughts gently, stickers that make a page feel like yours, and small tools for slowing down — made by three friends who believe a quiet desk starts with the right paper.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#shop">Browse the shop</a>
+        <a class="btn btn-ghost" href="#about">Our story</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="pics/img1.jpg" alt="Flat lay of PaperPeace notebooks, stickers and washi tape on a wooden desk">
+    </div>
+  </section>
+
+  <div class="strip">
+    <div class="strip-row">
+      <span>Designed &amp; packed by hand in Rawalpindi</span>
+      <span>Small batches, restocked slowly</span>
+      <span>Founded by three friends from NUST</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-grid">
+      <div class="about-img">
+        <img src="pics/img2.jpeg" alt="The three PaperPeace founders working at their studio table">
+      </div>
+      <div class="about-text">
+        <h2>Three friends, one shared table</h2>
+        <p>PaperPeace began at NUST, somewhere between deadlines and late-night tea, when we realised the pages we reached for said as much about our state of mind as anything we wrote on them.</p>
+        <p>We design every notebook, sticker sheet and tape roll to slow you down for a moment — a small, calm ritual in an otherwise loud day.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOP -->
+  <section id="shop">
+    <div class="section-head">
+      <h2>The shop</h2>
+      <p>Every piece in small batches — once it's gone, it's gone until the next one.</p>
+    </div>
+
+    <div class="cat-nav">
+      <a class="cat-pill" href="#cat-planners">Planners &amp; Notebooks</a>
+      <a class="cat-pill" href="#cat-sticky">Sticky Notes</a>
+      <a class="cat-pill" href="#cat-stickers">Stickers</a>
+      <a class="cat-pill" href="#cat-washi">Washi Tapes</a>
+      <a class="cat-pill" href="#cat-pens">Pens &amp; Highlighters</a>
+      <a class="cat-pill" href="#cat-desk">Desk &amp; Organising</a>
+      <a class="cat-pill" href="#cat-paper">Paper &amp; Envelopes</a>
+    </div>
+
+    <!-- Planners & Notebooks -->
+    <div class="category-block" id="cat-planners">
+      <h3 class="category-title">Planners &amp; Notebooks <span>2 items</span></h3>
+      <div class="product-grid">
+
+        <div class="card">
+          <div class="card-img"><img src="pics/planner.png" alt="Daily Planner"></div>
+          <div class="card-body">
+            <h3>Daily Planner</h3>
+            <div class="card-meta"><span class="price">Rs. 279</span><span class="stock">90 in stock</span></div>
+            <button class="add-btn">Order on Whatsapp</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img"><img src="pics/a5.png" alt="A5 Notebook"></div>
+          <div class="card-body">
+            <h3>A5 Notebooks</h3>
+            <div class="card-meta"><span class="price">Rs. 500</span><span class="stock">22 in stock</span></div>
+            <button class="add-btn">Order on Whatsapp</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Sticky Notes -->
+    <div class="category-block" id="cat-sticky">
+      <h3 class="category-title">Sticky Notes <span>3 items</span></h3>
+      <div class="product-grid">
+
+        <div class="card">
+          <div class="card-img">
+            <span class="badge low">Almost gone</span>
+            <img src="images/products/planty-sticky-notes.jpg" alt="Planty Sticky Notes Batch 2">
+          </div>
+          <div class="card-body">
+            <h3>Planty Sticky Notes (Batch 2)</h3>
+            <div class="card-meta"><span class="price">Rs. 157</span><span class="stock">12 in stock</span></div>
+            <button class="add-btn">Order on Whatsapp</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <span class="badge low">Almost gone</span>
+            <img src="images/products/translucent-sticky-notes.jpg" alt="Translucent Sticky Notes">
+          </div>
+          <div class="card-body">
+            <h3>Translucent Sticky Notes</h3>
+            <div class="card-meta"><span class="price">Rs. 94</span><span class="stock">2 in stock</span></div>
+            <button class="add-btn">Order on Whatsapp</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <span class="badge low">Almost gone</span>
+            <img src="images/products/colourful-sticky-notes.jpg" alt="Colourful Sticky Notes Batch 2">
+          </div>
+          <div class="card-body">
+            <h3>Colourful Sticky Notes (Batch 2)</h3>
+            <div class="card-meta"><span class="price">Rs. 187</span><span class="stock">7 in stock</span></div>
+            <button class="add-btn">Order on Whatsapp</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Stickers -->
+    <div class="category-block" id="cat-stickers">
+      <h3 class="category-title">Stickers <span>9 items</span></h3>
+      <div class="product-grid">
+
+        <div class="card">
+          <div class="card-img"><img src="images/products/landmarks-stickers.jpg" alt="Landmarks Stickers"></div>
+          <div class="card-body">
+            <h3>Landmarks Stickers</h3>
+            <div class="card-meta"><span class="price">Rs. 18</span><span class="stock">49 in stock</span></div>
+            <button class="add-btn">Order on Whatsapp</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img"><img src="images/products/pixel-style-stickers.jpg" alt="Pixel Style Stickers"></div>
+          <div class="card-body">
+            <h3>Pixel Style Stickers</h3>
+            <div class="card-meta"><span class="price">Rs. 16</span><span class="stock">50 in stock</span></div>
+            <button class="add-btn">Order on Whatsapp</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img"><img src="images/products/blue-stickers.jpg" alt="Blue Stickers"></div>
+          <div class="card-body">
+            <h3>Blue Stickers</h3>
+            <div class="card-meta"><span class="price">Rs. 13</span><span class="stock">57 in stock</span></div>
+            <button class="add-btn">Order on Whatsapp</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img"><img src="images/products/computing-stickers.jpg" alt="Computing Stickers"></div>
+          <div class="card-body">
+            <h3>Computing Stickers</h3>
+            <div class="card-meta"><span class="price">Rs. 16</span><span class="stock">50 in stock</span></div>
+            <button class="add-btn">Order on Whatsapp</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img"><img src="images/products/japanese-stickers.jpg" alt="Japanese Stickers"></div>
+          <div class="card-body">
+            <h3>Japanese Stickers</h3>
+            <div class="card-meta"><span class="price">Rs. 14</span><span class="stock">50 in stock</span></div>
+            <button class="add-btn">Order on Whatsapp</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img"><img src="images/products/pink-stickers.jpg" alt="Pink Stickers"></div>
+          <div class="card-body">
+            <h3>Pink Stickers</h3>
+            <div class="card-meta"><span class="price">Rs. 18</span><span class="stock">38 in stock</span></div>
+            <button class="add-btn">Order on Whatsapp</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <span class="badge low">Almost gone</span>
+            <img src="images/products/journaling-stickers.jpg" alt="Journaling Stickers">
+          </div>
+          <div class="card-body">
+            <h3>Journaling Stickers</h3>
+            <div class="card-meta"><span class="price">Rs. 160</span><span class="stock">6 in stock</span></div>
+            <button class="add-btn">Order on Whatsapp</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img"><img src="images/products/stamp-stickers.jpg" alt="Stamp Stickers"></div>
+          <div class="card-body">
+            <h3>Stamp Stickers</h3>
+            <div class="card-meta"><span class="price">Rs. 135</span><span class="stock">12 in stock</span></div>
+            <button class="add-btn">Order on Whatsapp</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img"><img src="images/products/flower-stickers.jpg" alt="Flower Stickers"></div>
+          <div class="card-body">
+            <h3>Flower Stickers</h3>
+            <div class="card-meta"><span class="price">Rs. 111.5</span><span class="stock">16 in stock</span></div>
+            <button class="add-btn">Order on Whatsapp</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Washi Tapes -->
+    <div class="category-block" id="cat-washi">
+      <h3 class="category-title">Washi Tapes <span>2 items</span></h3>
+      <div class="product-grid">
+
+        <div class="card">
+          <div class="card-img"><img src="images/products/washi-tapes-fancy.jpg" alt="Washi Tapes fancy"></div>
+          <div class="card-body">
+            <h3>Washi Tapes (Fancy)</h3>
+            <div class="card-meta"><span class="price">Rs. 42</span><span class="stock">59 in stock</span></div>
+            <button class="add-btn">Order on Whatsapp</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img"><img src="images/products/washi-tapes.jpg" alt="Washi Tapes"></div>
+          <div class="card-body">
+            <h3>Washi Tapes</h3>
+            <div class="card-meta"><span class="price">Rs. 43</span><span class="stock">11 in stock</span></div>
+            <button class="add-btn">Order on Whatsapp</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Pens & Highlighters -->
+    <div class="category-block" id="cat-pens">
+      <h3 class="category-title">Pens &amp; Highlighters <span>5 items</span></h3>
+      <div class="product-grid">
+
+        <div class="card">
+          <div class="card-img">
+            <span class="badge low">Almost gone</span>
+            <img src="images/products/pen-set.jpg" alt="Pen Set">
+          </div>
+          <div class="card-body">
+            <h3>Pen 3 Set</h3>
+            <div class="card-meta"><span class="price">Rs. 273</span><span class="stock">4 in stock</span></div>
+            <button class="add-btn">Order on Whatsapp</button>
+          </div>
+        </div>
+
+
+        <div class="card">
+          <div class="card-img">
+            <span class="badge low">Almost gone</span>
+            <img src="pics/highlighter.jpg" alt="Highlighter ice-cream set">
+          </div>
+          <div class="card-body">
+            <h3>Highlighter Ice-Cream Set</h3>
+            <div class="card-meta"><span class="price">Rs. 280</span><span class="stock">2 in stock</span></div>
+            <button class="add-btn">Order on Whatsapp</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Desk & Organising -->
+    <div class="category-block" id="cat-desk">
+      <h3 class="category-title">Desk &amp; Organising <span>6 items</span></h3>
+      <div class="product-grid">
+
+        <div class="card">
+          <div class="card-img"><img src="images/products/magnetic-bookmarks.jpg" alt="Magnetic Bookmarks"></div>
+          <div class="card-body">
+            <h3>Magnetic Bookmarks</h3>
+            <div class="card-meta"><span class="price">Rs. 78</span><span class="stock">301 in stock</span></div>
+            <button class="add-btn">Order on Whatsapp</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <span class="badge low">Almost gone</span>
+            <img src="pics/paperclip.JPG" alt="PaperClips">
+          </div>
+          <div class="card-body">
+            <h3>PaperClips</h3>
+            <div class="card-meta"><span class="price">Rs. 70</span><span class="stock">9 in stock</span></div>
+            <button class="add-btn">Order on Whatsapp</button>
+          </div>
+        </div>
+
+     
+
+        <div class="card">
+          <div class="card-img">
+            <span class="badge low">Almost gone</span>
+            <img src="images/products/pushpin.jpg" alt="PushPin">
+          </div>
+          <div class="card-body">
+            <h3>PushPin</h3>
+            <div class="card-meta"><span class="price">Rs. 95</span><span class="stock">9 in stock</span></div>
+            <button class="add-btn">Order on Whatsapp</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <span class="badge low">Almost gone</span>
+            <img src="images/products/booklight.jpg" alt="Booklight">
+          </div>
+          <div class="card-body">
+            <h3>Booklight</h3>
+            <div class="card-meta"><span class="price">Rs. 240</span><span class="stock">9 in stock</span></div>
+            <button class="add-btn">Order on Whatsapp</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img"><img src="images/products/erasers.jpg" alt="Erasers"></div>
+          <div class="card-body">
+            <h3>Erasers</h3>
+            <div class="card-meta"><span class="price">Rs. 37</span><span class="stock">48 in stock</span></div>
+            <button class="add-btn">Order on Whatsapp</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Paper & Envelopes -->
+    <div class="category-block" id="cat-paper">
+      <h3 class="category-title">Paper &amp; Envelopes <span>3 items</span></h3>
+      <div class="product-grid">
+
+        <div class="card">
+          <div class="card-img">
+            <span class="badge low">Almost gone</span>
+            <img src="images/products/postcard-letter.jpg" alt="Postcard Letter">
+          </div>
+          <div class="card-body">
+            <h3>Postcard Letter</h3>
+            <div class="card-meta"><span class="price">Rs. 100</span><span class="stock">6 in stock</span></div>
+            <button class="add-btn">Order on Whatsapp</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <span class="badge low">Almost gone</span>
+            <img src="pics/env.jpg" alt="Envelopes pack of 5">
+          </div>
+          <div class="card-body">
+            <h3>Envelopes (Pack of 5)</h3>
+            <div class="card-meta"><span class="price">Rs. 135</span><span class="stock">4 in stock</span></div>
+            <button class="add-btn">Order on Whatsapp</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <span class="badge low">Almost gone</span>
+            <img src="pics/diary.jpg" alt="White Paged Pads">
+          </div>
+          <div class="card-body">
+            <h3>White Paged Pads</h3>
+            <div class="card-meta"><span class="price">Rs. 390</span><span class="stock">7 in stock</span></div>
+            <button class="add-btn">Order on Whatsapp</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="footer-grid">
+    <div>
+      <h3>PaperPeace</h3>
+      <p>Where stationery meets serenity. Creative stationery for a more peaceful mind, made by three friends from NUST.</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#cat-planners">Planners &amp; Notebooks</a></li>
+        <li><a href="#cat-stickers">Stickers</a></li>
+        <li><a href="#cat-washi">Washi Tapes</a></li>
+        <li><a href="#cat-desk">Desk &amp; Organising</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Get in touch</h4>
+      <ul>
+        <li><a href="mailto:hello@paperpeace.pk">hello@paperpeace.pk</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Rawalpindi, Pakistan</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 PaperPeace. All prices are placeholders.</span>
+    <span>Crafting calm, one page at a time.</span>
+  </div>
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+
+  // Order on Whatsapp -> opens WhatsApp with a pre-filled order message
+  const WHATSAPP_NUMBER = '923126979445'; // +92 312 6979445
+  document.querySelectorAll('.add-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card = btn.closest('.card');
+      const name = card.querySelector('h3')?.textContent.trim() || 'this item';
+      const price = card.querySelector('.price')?.textContent.trim() || '';
+      const message = `Hi PaperPeace! I'd like to order:\n\n${name}${price ? ' — ' + price : ''}\n\nIs it available?`;
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank', 'noopener');
+    });
+  });
+</script>
+
+</body>
+</html>
